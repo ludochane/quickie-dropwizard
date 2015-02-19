@@ -2,8 +2,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * User: ludochane
@@ -13,7 +11,7 @@ import java.util.List;
 public class PlayerResource {
 
     @GET
-    public List<Player> best() {
-        // TODO
+    public Player best() {
+        return null;
     }
 }

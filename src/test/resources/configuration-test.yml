@@ -1,2 +1,2 @@
-jdbcDriver: oracle
+jdbcDriver: h2
 jdbcUser: ludovic
