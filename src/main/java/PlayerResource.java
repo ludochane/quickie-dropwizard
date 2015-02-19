@@ -13,8 +13,7 @@ import java.util.List;
 public class PlayerResource {
 
     @GET
-    public List<Player> all() {
+    public List<Player> best() {
         // TODO
-        return null;
     }
 }
