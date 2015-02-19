@@ -5,7 +5,7 @@ import io.dropwizard.setup.Environment;
 /**
  * User: ludochane
  */
-public class BadmintonApplication extends Application<BadmintonConfiguration> {
+public class BadmintonApplication extends io.dropwizard.Application<BadmintonConfiguration> {
     @Override
     public void initialize(Bootstrap<BadmintonConfiguration> bootstrap) {
 

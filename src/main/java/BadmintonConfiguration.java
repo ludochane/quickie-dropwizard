@@ -3,7 +3,7 @@ import io.dropwizard.Configuration;
 /**
  * User: ludochane
  */
-public class BadmintonConfiguration extends Configuration {
+public class BadmintonConfiguration extends io.dropwizard.Configuration {
 
     private String jdbcDriver;
 
