@@ -13,8 +13,8 @@ import java.util.List;
 public class PlayerResource {
 
     @GET
-    public List<Player> all() {
-        // TODO
-        return null;
+    @Path("/best")
+    public Player best() {
+        return new Player("Lin Dan");
     }
 }
