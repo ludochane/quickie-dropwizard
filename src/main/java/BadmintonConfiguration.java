@@ -1,27 +1,26 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
+import io.dropwizard.db.DataSourceFactory;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
  * User: ludochane
  */
 public class BadmintonConfiguration extends Configuration {
 
-    private String jdbcDriver;
+    @Valid
+    @NotNull
+    private DataSourceFactory database = new DataSourceFactory();
 
-    private String jdbcUser;
-
-    public String getJdbcDriver() {
-        return jdbcDriver;
+    @JsonProperty("database")
+    public DataSourceFactory getDatabase() {
+        return database;
     }
 
-    public void setJdbcDriver(String jdbcDriver) {
-        this.jdbcDriver = jdbcDriver;
-    }
-
-    public String getJdbcUser() {
-        return jdbcUser;
-    }
-
-    public void setJdbcUser(String jdbcUser) {
-        this.jdbcUser = jdbcUser;
+    @JsonProperty("database")
+    public void setDatabase(DataSourceFactory database) {
+        this.database = database;
     }
 }

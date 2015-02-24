@@ -1,5 +1,6 @@
 import com.sun.jersey.api.client.Client;
 import io.dropwizard.testing.junit.DropwizardAppRule;
+import model.Player;
 import org.junit.ClassRule;
 import org.junit.Test;
 
