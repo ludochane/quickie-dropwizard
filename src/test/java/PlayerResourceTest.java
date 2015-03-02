@@ -1,7 +1,8 @@
 import com.sun.jersey.api.client.Client;
 import io.dropwizard.testing.junit.DropwizardAppRule;
-import model.Player;
+import io.dropwizard.testing.junit.ResourceTestRule;
 import org.junit.ClassRule;
+import org.junit.Rule;
 import org.junit.Test;
 
 import static org.fest.assertions.api.Assertions.assertThat;
@@ -23,5 +24,4 @@ public class PlayerResourceTest {
 
         assertThat(player.getName()).isEqualTo("Lin Dan");
     }
-
 }

@@ -12,23 +12,7 @@ import resource.PlayerResource;
 /**
  * User: ludochane
  */
-public class BadmintonApplication extends Application<BadmintonConfiguration> {
-
-    private final HibernateBundle<BadmintonConfiguration> hibernateBundle = new HibernateBundle<BadmintonConfiguration>(Player.class) {
-        @Override
-        public DataSourceFactory getDataSourceFactory(BadmintonConfiguration badmintonConfiguration) {
-            return badmintonConfiguration.getDatabase();
-        }
-    };
-
-    private final MigrationsBundle<BadmintonConfiguration> migrationsBundle = new MigrationsBundle<BadmintonConfiguration>() {
-        @Override
-        public DataSourceFactory getDataSourceFactory(BadmintonConfiguration badmintonConfiguration) {
-            return badmintonConfiguration.getDatabase();
-        }
-    };
-
-    private final SwaggerDropwizard swaggerDropwizard = new SwaggerDropwizard();
+public class BadmintonApplication extends io.dropwizard.Application<BadmintonConfiguration> {
 
     public static void main(String[] args) throws Exception {
         new BadmintonApplication().run(args);
@@ -44,14 +28,8 @@ public class BadmintonApplication extends Application<BadmintonConfiguration> {
 
     @Override
     public void run(BadmintonConfiguration configuration, Environment environment) throws Exception {
-        // dao
-        PlayerDao playerDao = new PlayerDao(hibernateBundle.getSessionFactory());
+        environment.jersey().register(new PlayerResource());
 
-        // jersey
-        environment.jersey().register(new PlayerResource(playerDao));
-
-        // swagger
-        swaggerDropwizard.onRun(configuration, environment, "localhost", 8080);
-
+        environment.healthChecks().register("Database HealtCheck", new DatabaseHealthCheck());
     }
 }

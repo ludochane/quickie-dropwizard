@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 /**
  * User: ludochane
  */
-public class BadmintonConfiguration extends Configuration {
+public class BadmintonConfiguration extends io.dropwizard.Configuration {
 
     @Valid
     @NotNull
