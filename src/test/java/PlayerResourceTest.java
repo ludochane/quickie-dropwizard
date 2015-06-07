@@ -1,11 +1,10 @@
-import com.sun.jersey.api.client.Client;
-import io.dropwizard.testing.junit.DropwizardAppRule;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.junit.ClassRule;
-import org.junit.Rule;
 import org.junit.Test;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import javax.ws.rs.client.Client;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * User: ludochane
@@ -13,14 +12,15 @@ import static org.fest.assertions.api.Assertions.assertThat;
 public class PlayerResourceTest {
 
     @ClassRule
-    public static final DropwizardAppRule<BadmintonConfiguration> appRule =
-            new DropwizardAppRule<BadmintonConfiguration>(BadmintonApplication.class, "src/test/resources/configuration-test.yml");
+    public static final ResourceTestRule resources = ResourceTestRule.builder()
+            .addResource(new PlayerResource())
+            .build();
 
     @Test
     public void best_should_return_Lin_Dan() {
-        Client client = new Client();
+        Client client = resources.client();
 
-        Player player = client.resource("http://localhost:8080/players/best").get(Player.class);
+        Player player = client.target("http://localhost:8080/players/best").request().get(Player.class);
 
         assertThat(player.getName()).isEqualTo("Lin Dan");
     }
